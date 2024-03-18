@@ -51,7 +51,7 @@ async function signUp(signUpDto) {
                 errorFields.push(`핸드폰 번호: ${error.response.data.phoneNumber}`);
             }
             // 에러 메시지 조합
-            return `${errorFields.join('\n')}`;
+            return `${errorFields.join(', ')}`;
         }
         else {
             // 내부 서버 에러
