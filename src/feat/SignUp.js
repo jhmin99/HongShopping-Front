@@ -3,7 +3,7 @@ import { verifyIdentification, signUp } from '../utils/UserUtils';
 import '../css/SignUp.css'
 import { Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-
+import { Navigate } from 'react-router-dom';
 
 function SignUp() {
     // 입력값과 관련된 state 정의
@@ -17,6 +17,7 @@ function SignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const [responseMessage_ID, setResponseMessage_ID] = useState('');
     const [responseMessage_SignUp, setResponseMessage_SignUp] = useState('');
+    const [isRedirected, setIsRedirect] = useState(false);
 
     // 아이디 중복 체크 함수
     const handleVerifyIdentification = async () => {
@@ -46,6 +47,8 @@ function SignUp() {
             }; // 사용자 데이터 생성
             const message = await signUp(signUpDto);
             setResponseMessage_SignUp(message);
+            setIsRedirect(true);
+            
         } catch (error) {
             // 그 외 에러
             console.log(error);
@@ -81,7 +84,7 @@ function SignUp() {
                     </Form.Group>
                     {/* 중복 확인 버튼 */}
                     {/* 응답 또는 오류 메시지 출력 */}
-                    
+
                 </div>
                 {/* 비밀번호 입력 필드 */}
                 <div>
@@ -159,6 +162,7 @@ function SignUp() {
 
             {/* 응답 또는 오류 메시지 출력 */}
             {responseMessage_SignUp && <p>{responseMessage_SignUp}</p>}
+            {isRedirected && <Navigate to = "/login"/>}
         </Container>
     );
 }
