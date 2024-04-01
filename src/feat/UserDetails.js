@@ -7,17 +7,18 @@ function UserDetails() {
     const { id } = useParams(); // URL 매개변수 읽기
     const [isRedirected, setIsRedirect] = useState(false);
 
-
     useEffect(() => {
         // 사용자 정보를 가져오는 API 호출
         const fetchUserDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/users?id=${id}`, {withCredentials: true});
+
+                const response = await axios.get(`http://localhost:8080/api/users?id=${id}`
+                );
                 setUserDetails(response.data);
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     setIsRedirect(true);
-                }else{
+                } else {
                     console.log(error);
                 }
             }
@@ -27,7 +28,7 @@ function UserDetails() {
     }, [id]);
 
     return (
-        
+
         <div>
             <h1>User Details</h1>
             {userDetails ? (

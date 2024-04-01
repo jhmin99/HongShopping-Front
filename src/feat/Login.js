@@ -22,6 +22,9 @@ function Login() {
             console.log('Login success:', response.data);
             console.log(token);
             setIsRedirect(true);
+            const authdata = window.btoa(identification + ':' + password);
+            sessionStorage.setItem('userdetails', JSON.stringify(authdata));
+
         } catch (error) {
             console.error('Login failed:', error);
         }
