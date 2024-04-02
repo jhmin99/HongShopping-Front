@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/Interceptor.js';
 import { useParams, Navigate } from 'react-router-dom'; // useParams 추가
 
 function UserDetails() {

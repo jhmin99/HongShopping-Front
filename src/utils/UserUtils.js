@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../config/Interceptor.js';
 
 // 아이디 중복 체크 함수
 async function verifyIdentification(signUpDto_getIdentification) {

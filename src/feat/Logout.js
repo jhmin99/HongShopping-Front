@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { Container } from 'react-bootstrap';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../config/Interceptor.js';
 
 function Logout() {
     const [isRedirected, setIsRedirect] = useState(false);

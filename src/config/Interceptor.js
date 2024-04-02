@@ -9,22 +9,23 @@ const axiosInstance = axios.create({
 
 // 요청 인터셉터 설정
 axiosInstance.interceptors.request.use(
-    (config) => {
+    (request) => {
         // 세션 스토리지에서 userdetails 가져오기
         const userdetails = sessionStorage.getItem('userdetails');
         const token = getCookie('XSRF-TOKEN'); // CSRF 토큰 가져오기
 
         // 요청 헤더에 CSRF 토큰 추가
         if (token) {
-            config.headers['X-XSRF-TOKEN'] = token;
+            request.headers['X-XSRF-TOKEN'] = token;
         }
 
         // userdetails가 존재하면 Authorization 헤더 추가
         if (userdetails) {
-            config.headers['Authorization'] = `Basic ${JSON.parse(userdetails)}`;
+            request.headers['Authorization'] = `Basic ${JSON.parse(userdetails)}`;
         }
 
-        return config;
+        console.log(userdetails, token);
+        return Promise.resolve(request); // Promise를 반환
     },
     (error) => {
         return Promise.reject(error);
