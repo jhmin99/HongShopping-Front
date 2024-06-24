@@ -32,4 +32,17 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+// 응답 인터셉터 설정
+axiosInstance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 403) {
+            window.location = '/signin'; // 403 에러 발생 시 /signin 페이지로 리다이렉트
+        }
+        return Promise.reject(error);
+    }
+);
+
 export default axiosInstance;
