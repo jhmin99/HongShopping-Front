@@ -3,7 +3,7 @@ import { getCookie } from '../utils/CookieUtils'; // 쿠키 유틸리티 import 
 
 // axios의 인스턴스 생성
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/api', // API의 기본 URL
+    baseURL: 'http://localhost:8080/', // API의 기본 URL
     withCredentials: true, // 요청에 자격 증명 정보를 포함
 });
 
