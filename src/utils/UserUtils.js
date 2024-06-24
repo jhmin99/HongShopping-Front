@@ -22,7 +22,7 @@ async function verifyIdentification(signUpDto_getIdentification) {
 // 회원 가입 함수
 async function signUp(signUpDto) {
     try {
-        const response = await axios.post('/api/users', signUpDto);
+        const response = await axios.post('/api/signup', signUpDto);
         // 회원가입 성공
         return response.data.statusMessage;
     } catch (error) {
