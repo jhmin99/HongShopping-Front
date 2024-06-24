@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { verifyIdentification, signUp } from '../utils/UserUtils';
-import '../css/SignUp.css'
+import '../css/SignUp.css';
 import { Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Navigate } from 'react-router-dom';
@@ -47,8 +47,9 @@ function SignUp() {
             }; // 사용자 데이터 생성
             const message = await signUp(signUpDto);
             setResponseMessage_SignUp(message);
-            setIsRedirect(true);
-            
+            if (message === 'User has been created successfully.') { // 성공 메시지에 따라 조건 변경
+                setIsRedirect(true);
+            }
         } catch (error) {
             // 그 외 에러
             console.log(error);
@@ -63,9 +64,6 @@ function SignUp() {
                 SignUp
             </p>
             <Form>
-
-
-
                 {/* 아이디 입력 필드 */}
                 <div>
                     <Form.Group className="mb-3">
@@ -82,9 +80,6 @@ function SignUp() {
                         </button>
                         {responseMessage_ID && <p>{responseMessage_ID}</p>}
                     </Form.Group>
-                    {/* 중복 확인 버튼 */}
-                    {/* 응답 또는 오류 메시지 출력 */}
-
                 </div>
                 {/* 비밀번호 입력 필드 */}
                 <div>
@@ -111,7 +106,6 @@ function SignUp() {
                             required
                             placeholder="Confirm Password" />
                     </Form.Group>
-
                 </div>
                 {/* 이름 입력 필드 */}
                 <div>
@@ -138,12 +132,11 @@ function SignUp() {
                             required
                         />
                     </Form.Group>
-
                 </div>
                 {/* 핸드폰 번호 입력 필드 */}
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userBirthDate">PhoneNumber</Form.Label>
+                        <Form.Label htmlFor="userPhoneNumber">PhoneNumber</Form.Label>
                         <Form.Control type="text"
                             id="userPhoneNumber"
                             value={userPhoneNumber}
@@ -162,7 +155,7 @@ function SignUp() {
 
             {/* 응답 또는 오류 메시지 출력 */}
             {responseMessage_SignUp && <p>{responseMessage_SignUp}</p>}
-            {isRedirected && <Navigate to = "/login"/>}
+            {isRedirected && <Navigate to="/signin" />}
         </Container>
     );
 }
