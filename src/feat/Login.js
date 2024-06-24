@@ -2,9 +2,9 @@ import { Link, Navigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 import { Container } from 'react-bootstrap';
 import { useState } from 'react';
-import axios from 'axios';
 import '../css/Login.css'
 import { getCookie } from '../utils/CookieUtils';
+import axiosInstance from '../config/Interceptor';
 
 function Login() {
 
@@ -15,7 +15,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/login', {
+            const response = await axiosInstance.post('/api/login', {
                 identification,
                 password
             });

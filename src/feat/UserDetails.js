@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../config/Interceptor.js';
 import { useParams, Navigate } from 'react-router-dom'; // useParams 추가
+import axiosInstance from '../config/Interceptor.js';
 
 function UserDetails() {
     const [userDetails, setUserDetails] = useState(null);
@@ -12,7 +12,7 @@ function UserDetails() {
         const fetchUserDetails = async () => {
             try {
 
-                const response = await axios.get(`http://localhost:8080/api/users?id=${id}`
+                const response = await axiosInstance.get(`/api/users?id=${id}`
                 );
                 setUserDetails(response.data);
             } catch (error) {

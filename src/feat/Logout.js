@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom'
 import { Container } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from '../config/Interceptor.js';
+import axiosInstance from '../config/Interceptor.js';
 
 function Logout() {
     const [isRedirected, setIsRedirect] = useState(false);
@@ -10,8 +11,8 @@ function Logout() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(
-                'http://localhost:8080/api/logout'
+            await axiosInstance.post(
+                '/api/logout'
             );
             console.log('Logout success');
             if(sessionStorage.getItem('userdetails')){
