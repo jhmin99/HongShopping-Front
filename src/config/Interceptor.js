@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getCookie } from '../utils/CookieUtils'; // 쿠키 유틸리티 import 추가
 
 // axios의 인스턴스 생성
 const axiosInstance = axios.create({
@@ -10,22 +9,14 @@ const axiosInstance = axios.create({
 // 요청 인터셉터 설정
 axiosInstance.interceptors.request.use(
     (request) => {
-        // 세션 스토리지에서 userdetails 가져오기
-        const userdetails = sessionStorage.getItem('userdetails');
-        const token = getCookie('XSRF-TOKEN'); // CSRF 토큰 가져오기
+        const userdetails = JSON.parse(sessionStorage.getItem('userdetails'));
 
-        // 요청 헤더에 CSRF 토큰 추가
-        if (token) {
-            request.headers['X-XSRF-TOKEN'] = token;
+        if (userdetails && userdetails.accessToken) {
+            request.headers['Authorization'] = `Bearer ${userdetails.accessToken}`;
         }
 
-        // userdetails가 존재하면 Authorization 헤더 추가
-        if (userdetails) {
-            request.headers['Authorization'] = `Basic ${JSON.parse(userdetails)}`;
-        }
-
-        console.log(userdetails, token);
-        return Promise.resolve(request); // Promise를 반환
+        console.log(userdetails);
+        return request; // Promise.resolve 제거
     },
     (error) => {
         return Promise.reject(error);
@@ -39,6 +30,7 @@ axiosInstance.interceptors.response.use(
     },
     (error) => {
         if (error.response && error.response.status === 403) {
+            sessionStorage.removeItem('userdetails'); // 403 에러 발생 시 세션 스토리지에서 사용자 정보 제거
             window.location = '/signin'; // 403 에러 발생 시 /signin 페이지로 리다이렉트
         }
         return Promise.reject(error);
