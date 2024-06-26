@@ -31,7 +31,7 @@ function Home() {
                     >
                         {userdetails ? (
                             <>
-                                <Nav.Link href={`/users/${userdetails.userId}`}>Mypage</Nav.Link>
+                                <Nav.Link href="/mypage">Mypage</Nav.Link>
                                 <Nav.Link href="/cart">Cart</Nav.Link>
                                 <Nav.Link href="/wish">Wish</Nav.Link>
                                 <Nav.Link href="/logout">Logout</Nav.Link>
