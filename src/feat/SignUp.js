@@ -26,7 +26,6 @@ function SignUp() {
             const message = await verifyIdentification(userId);
             setResponseMessage_ID(message);
         } catch (error) {
-            // 그 외 에러
             console.log(error);
         } finally {
             setIsLoading(false);
@@ -51,7 +50,6 @@ function SignUp() {
                 setIsRedirect(true);
             }
         } catch (error) {
-            // 그 외 에러
             console.log(error);
         } finally {
             setIsLoading(false);
@@ -60,93 +58,89 @@ function SignUp() {
 
     return (
         <Container>
-            <p className='title'>
-                SignUp
-            </p>
+            <p className='title'>SignUp</p>
             <Form>
                 {/* 아이디 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userId">ID</Form.Label>
-                        <Form.Control type="text"
-                            id="userId"
-                            value={userId}
-                            onChange={(event) => setUserId(event.target.value)}
-                            disabled={isLoading} // 로딩 중에는 입력 비활성화
-                            required
-                            placeholder="Enter ID" />
-                        <button type="button" onClick={handleVerifyIdentification} disabled={isLoading}>
-                            verify ID
-                        </button>
-                        {responseMessage_ID && <p>{responseMessage_ID}</p>}
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userId">ID</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="userId"
+                        value={userId}
+                        onChange={(event) => setUserId(event.target.value)}
+                        disabled={isLoading}
+                        required
+                        placeholder="Enter ID"
+                    />
+                    <button type="button" onClick={handleVerifyIdentification} disabled={isLoading}>
+                        verify ID
+                    </button>
+                    {responseMessage_ID && <p>{responseMessage_ID}</p>}
+                </Form.Group>
                 {/* 비밀번호 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userPassword">Password</Form.Label>
-                        <Form.Control type="password"
-                            id="userPassword"
-                            value={userPassword}
-                            onChange={(event) => setUserPassword(event.target.value)}
-                            disabled={isLoading}
-                            required
-                            placeholder="Password" />
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userPassword">Password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        id="userPassword"
+                        value={userPassword}
+                        onChange={(event) => setUserPassword(event.target.value)}
+                        disabled={isLoading}
+                        required
+                        placeholder="Password"
+                    />
+                </Form.Group>
                 {/* 비밀번호 확인 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userConfirmPassword">Confirm Password</Form.Label>
-                        <Form.Control type="password"
-                            id="userConfirmPassword"
-                            value={userConfirmPassword}
-                            onChange={(event) => setUserConfirmPassword(event.target.value)}
-                            disabled={isLoading}
-                            required
-                            placeholder="Confirm Password" />
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userConfirmPassword">Confirm Password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        id="userConfirmPassword"
+                        value={userConfirmPassword}
+                        onChange={(event) => setUserConfirmPassword(event.target.value)}
+                        disabled={isLoading}
+                        required
+                        placeholder="Confirm Password"
+                    />
+                </Form.Group>
                 {/* 이름 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userName">Name</Form.Label>
-                        <Form.Control type="text"
-                            id="userName"
-                            value={userName}
-                            onChange={(event) => setUserName(event.target.value)}
-                            disabled={isLoading}
-                            required
-                            placeholder="Name" />
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userName">Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="userName"
+                        value={userName}
+                        onChange={(event) => setUserName(event.target.value)}
+                        disabled={isLoading}
+                        required
+                        placeholder="Name"
+                    />
+                </Form.Group>
                 {/* 생년월일 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userBirthDate">BirthDate</Form.Label>
-                        <Form.Control type="date"
-                            id="userBirthDate"
-                            value={userBirthDate}
-                            onChange={(event) => setUserBirthDate(event.target.value)}
-                            disabled={isLoading}
-                            required
-                        />
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userBirthDate">BirthDate</Form.Label>
+                    <Form.Control
+                        type="date"
+                        id="userBirthDate"
+                        value={userBirthDate}
+                        onChange={(event) => setUserBirthDate(event.target.value)}
+                        disabled={isLoading}
+                        required
+                    />
+                </Form.Group>
                 {/* 핸드폰 번호 입력 필드 */}
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="userPhoneNumber">PhoneNumber</Form.Label>
-                        <Form.Control type="text"
-                            id="userPhoneNumber"
-                            value={userPhoneNumber}
-                            onChange={(event) => setUserPhoneNumber(event.target.value)}
-                            disabled={isLoading}
-                            required
-                            placeholder="PhoneNumber (exclude '-')"
-                        />
-                    </Form.Group>
-                </div>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="userPhoneNumber">PhoneNumber</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="userPhoneNumber"
+                        value={userPhoneNumber}
+                        onChange={(event) => setUserPhoneNumber(event.target.value)}
+                        disabled={isLoading}
+                        required
+                        placeholder="PhoneNumber (exclude '-')"
+                    />
+                </Form.Group>
                 {/* 회원 가입 버튼 */}
                 <button type="button" onClick={handleSignUp} disabled={isLoading}>
                     submit
@@ -155,7 +149,7 @@ function SignUp() {
 
             {/* 응답 또는 오류 메시지 출력 */}
             {responseMessage_SignUp && <p>{responseMessage_SignUp}</p>}
-            {isRedirected && <Navigate to="/signin" />}
+            {isRedirected && <Navigate to="/signin" replace />}
         </Container>
     );
 }
