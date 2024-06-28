@@ -1,0 +1,64 @@
+/* Add your custom CSS for UserDetails component here */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+}
+
+.list-group-item span {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btn-custom {
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.btn-custom-edit {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-custom-edit:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-custom-delete {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-custom-delete:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.card-header {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+    background-color: #fff;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
