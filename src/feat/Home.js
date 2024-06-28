@@ -1,27 +1,19 @@
-import '../css/Home.css';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useEffect, useState } from 'react';
+import '../css/Home.css';
+import { UserContext } from '../context/UserContext';
 
 function Home() {
-    const [userdetails, setUserdetails] = useState(null);
-
-    useEffect(() => {
-        const userdetails = JSON.parse(sessionStorage.getItem('userdetails'));
-        setUserdetails(userdetails); // 세션 스토리지에서 사용자 정보 가져와서 상태 업데이트
-    }, []);
-
-    useEffect(() => {
-        console.log('userdetails changed:', userdetails);
-    }, [userdetails]);
+    const { userdetails } = useContext(UserContext);
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="#">Hong Shopping</Navbar.Brand>
+                <Navbar.Brand href="/home">Hong Shopping</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
