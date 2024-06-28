@@ -1,9 +1,9 @@
-import axiosInstance from '../config/Interceptor.js'; // axiosInstance import
+import {axiosInstance} from '../config/Interceptor.js'; // axiosInstance import
 
 // 아이디 중복 체크 함수
 async function verifyIdentification(signUpDto_getIdentification) {
     try {
-        const response = await axiosInstance.post('/api/users/check-id', { identification: signUpDto_getIdentification });
+        const response = await axiosInstance.post('/users/check-id', { identification: signUpDto_getIdentification });
         // 아이디 사용가능
         return response.data.statusMessage;
     } catch (error) {
@@ -22,7 +22,7 @@ async function verifyIdentification(signUpDto_getIdentification) {
 // 회원 가입 함수
 async function signUp(signUpDto) {
     try {
-        const response = await axiosInstance.post('/api/signup', signUpDto);
+        const response = await axiosInstance.post('/signup', signUpDto);
         // 회원가입 성공
         return response.data.statusMessage;
     } catch (error) {
