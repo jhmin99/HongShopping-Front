@@ -1,15 +1,14 @@
 import { Navigate } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import axiosInstance from '../config/Interceptor.js';
+import { useState } from 'react';
+import { axiosInstance } from '../config/Interceptor.js';
 
 function Logout() {
     const [isRedirected, setIsRedirect] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         try {
-            await axiosInstance.post('/api/logout');
+            await axiosInstance.post('/logout');
             console.log('Logout success');
             sessionStorage.removeItem('userdetails');  // 사용자 정보 제거
             setIsRedirect(true);
@@ -18,17 +17,11 @@ function Logout() {
         }
     };
 
-    useEffect(() => {
-        if (isRedirected) {
-            window.location.reload();  // 페이지 새로고침
-        }
-    }, [isRedirected]);
-
     return (
         <Container>
             <p className='title'>Logout</p>
             <button type="button" onClick={handleSubmit}>Logout</button>
-            {isRedirected && <Navigate to="/home" />}
+            {isRedirected && <Navigate to="/signin" replace />}
         </Container>
     );
 }
