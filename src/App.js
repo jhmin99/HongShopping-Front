@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-import Home from './feat/Home';
 import SignUp from './feat/SignUp';
 import Login from './feat/Login';
 import Logout from './feat/Logout';
 import UserDetails from './feat/UserDetails';
-import axiosInstance from '../src/config/Interceptor.js';
+import { axiosInstance } from './config/Interceptor';
+import { CsrfProvider } from './context/CsrfTokenContext';
+import MainLayout from './feat/MainLayout';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   const [isSessionActive, setIsSessionActive] = useState(true);
@@ -41,16 +43,21 @@ function App() {
   }, [isSessionActive]);
 
   return (
-    <CookiesProvider>
-      <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/signin' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/mypage' element={<UserDetails />} />
-        <Route path='/logout' element={<Logout />} />
-        <Route path='/' element={<Navigate to='/home' />} />
-      </Routes>
-    </CookiesProvider>
+    <CsrfProvider>
+      <CookiesProvider>
+        <UserProvider>
+          <Routes>
+            <Route path='/' element={<MainLayout />}>
+              <Route path='/home' element={<div />} /> {/* Home 컴포넌트를 중복해서 렌더링하지 않도록 div로 대체 */}
+              <Route path='/signin' element={<Login />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/mypage' element={<UserDetails />} />
+              <Route path='/logout' element={<Logout />} />
+            </Route>
+          </Routes>
+        </UserProvider>
+      </CookiesProvider>
+    </CsrfProvider>
   );
 }
 
