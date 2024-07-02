@@ -70,7 +70,7 @@ axiosInstance.interceptors.response.use(
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
                 // Refresh token 만료 시 세션 스토리지를 비우고 로그인 페이지로 리다이렉션
-                if (refreshError.response && refreshError.response.status === 403) {
+                if (refreshError.response && refreshError.response.status === 400) {
                     sessionStorage.removeItem('userdetails');
                     window.location = '/signin';
                 }
